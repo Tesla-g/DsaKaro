@@ -12,7 +12,7 @@ class Solution
             {
 
                 return -1;
-            } 
+            }
 
             if (t == INT_MIN && mul < 0 && abs(mul) == 1)
             {
