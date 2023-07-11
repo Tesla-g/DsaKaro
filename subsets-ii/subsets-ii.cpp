@@ -17,7 +17,7 @@ public:
         s(idx,ip_copy, op1);
         s(idx,ip_copy, op2);
 
-        
+        //there is also an another way of doin it which is for loop methdo 
         
     }
 
