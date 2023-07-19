@@ -1,27 +1,33 @@
 class Solution {
 public:
-    int m =0;
-   void ispal(int left,int right,string str){
-       
-       while((left>=0 && right<str.size())&& (str.at(left)==str.at(right))){
-          m=m+1;
-           right++;
-           left--;
-       }
-       
-   }
+int m =0;
+   void ispal(int left,int right,string op){
     
-    void genratestrinngs(string st){
+while((left>=0&& right<op.size())&&(op.at(left)==op.at(right))){
+
+    m=m+1;
+    left--;
+    right++;
+}
+    
+    
+}
+
+
+void generateSubstrings(string ip) {
+   
+         for(int i =0;i<ip.size();i++){
+         ispal(i,i,ip); //odd string 
+         ispal(i,i+1,ip);
+         }
+        
+    }
+
 
     
-        for(int i=0;i<st.size();i++){
-         ispal(i,i,st);
-         ispal(i,i+1,st) ;  
-    }
-    
-    }
     int countSubstrings(string s) {
-        genratestrinngs(s);
+      
+        generateSubstrings(s);
         return m;
     }
 };
