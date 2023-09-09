@@ -7,7 +7,7 @@ public:
         
         
         if(sum==target) return 1;
-        if(sum>target ) return 0;
+        if(sum>target || sum<0 ) return 0;
         // int takei=solve(i,sum+nums[i] ,nums,target);
         // int skipi=solve(i+1,sum-nums[i],nums, target);
         if(mp.find(sum)!=mp.end()) return mp[sum];
