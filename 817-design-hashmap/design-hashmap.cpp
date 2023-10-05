@@ -1,24 +1,65 @@
 class MyHashMap {
 public:
     
- vector<int> hash;
-    
-    
+    int size=10000;
+    vector<list<pair<int,int>>> bucket;
     MyHashMap() {
-        hash.resize(1000000+1,-1);
+        bucket.resize(size);
     }
     
     void put(int key, int value) {
-        hash[key]=value;
+        auto bnumber=key%size;
+        auto &chain = bucket[bnumber];
+        
+        for(auto &it : chain){ // you are iterating over the chaing to get the key
+            
+            if(it.first==key){
+                
+                it.second=value;
+                return;
+            }
+            
+            
+        }
+        
+        // if the key is not present 
+        // you need to add the stuff into the chain 
+        chain.emplace_back(key,value);
+        
     }
     
     int get(int key) {
-        if(hash[key]!=-1) return hash[key];
+         auto bnumber=key%size;
+        auto &chain = bucket[bnumber];
+        
+        
+        
+        for(auto it=chain.begin();it!=chain.end();it++){
+            
+            if(it->first==key){
+                
+                return it->second;
+            }
+            
+            
+        }
+        
         return -1;
     }
     
     void remove(int key) {
-    hash[key]=-1;
+          auto bnumber=key%size;
+        auto &chain = bucket[bnumber];
+         for(auto it=chain.begin();it!=chain.end();it++){
+            
+            if(it->first==key){
+                
+                chain.erase(it);
+                return;
+            }
+            
+            
+        }
     }
 };
 
