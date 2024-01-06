@@ -36,6 +36,7 @@ int nextStartingJob(vector<job>&jobs,int start,int &currentJobEnd){
 
 
 int solve(int i,vector<job>&jobs){
+   ios::sync_with_stdio(false); cin.tie(NULL);
   if(i>=m)return 0;
   if(t[i]!=-1)return t[i];
   int next=nextStartingJob(jobs,i+1,jobs[i].et);
