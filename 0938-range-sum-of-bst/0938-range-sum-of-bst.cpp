@@ -12,7 +12,7 @@
 class Solution {
 public:
   set<int>s;
-void rangeSum(TreeNode* root,int low,int high){
+void rangeSum(TreeNode* root,int &low,int &high){
   if(root==nullptr)return ;
   if(root->val>=low && root->val<=high){
     s.insert(root->val);
