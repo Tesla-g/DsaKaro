@@ -23,23 +23,13 @@ public:
 
 }
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-          if(root1==NULL|| root2==NULL)return false;
+    if(root1==NULL|| root2==NULL)return false;
   
      vector<int>ans;
      vector<int>ans2;
      leaf(root1,ans);
      leaf(root2,ans2);
-      if(ans.size()!=ans2.size())return false;
-       else{
-        for(int i=0;i<ans.size();i++){
-      if(ans[i]!=ans2[i]){
-        return false;
-      }
-
-    }
-
-  }
-      return true;
+    return ans==ans2;
 
     }
 };
