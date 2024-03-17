@@ -9,7 +9,7 @@ public:
        for (int i = 0; i < intervals.size(); i++) {
             int start = intervals[i][0];
             int end = intervals[i][1];
-            
+//             the start value should be less than the end value and the end value should be greater than or equal to the start the value 
             if (start <= ei && end >= si) { // Check for overlap
                 si = min(si, start);
                 ei = max(ei, end);
