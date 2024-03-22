@@ -1,10 +1,17 @@
 class Solution {
 public:
+   long long  int reverseNumber(int y){
+      long long   int reverse=0;
+        while(y>0){
+           long long  int lastDigit=y%10;
+            reverse=reverse*10+lastDigit;
+            y/=10;
+        }
+        return reverse;
+    }
     bool isPalindrome(int x) {
         if(x<0)return false;
-        string s=to_string(x);
-        string t=s;
-        reverse(t.begin(),t.end());
-        return s==t;
+    long long  int num=reverseNumber(x);
+    return num==x;
     }
 };
