@@ -2,17 +2,19 @@ class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
         int n=nums.size();
-        vector<int> freq(n+1,0);
+//         in place negative integer 
         for(auto e : nums){
-            freq[e]=1;
-        }
-        vector<int> ans;
-        for(int i=1;i<=n;i++){
-            if(!freq[i]){
-                ans.push_back(i);
-//                 that mean it is present
+            if(nums[abs(e)-1]>0){
+//                 if the element is already postive then add negative value 
+              nums[abs(e)-1] =-nums[abs(e)-1];
             }
-            
+
+        }
+        vector<int>ans;
+        for(int i=0;i<n;i++){
+            if(nums[i]>0){
+                ans.push_back(i+1);
+            }
         }
         return ans;
     }
