@@ -9,6 +9,7 @@ public:
                 break;
             }
         }
+        if(isIncreasing) return true;
         for(int l=i+1;l<=j;l++){
             if(nums[l-1]<=nums[l]){
                 isDecreasing=false;
