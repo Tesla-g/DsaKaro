@@ -11,19 +11,17 @@ public:
                 count_two++;
             }
         }
-        int i=0;
-        while(i<nums.size()){
-            while(count_zero!=0){
-                nums[i++]=0;
+        for(int i=0;i<nums.size();i++){
+            if(count_zero!=0){
+                nums[i]=0;
                 count_zero--;
-                
-            } 
-            while(count_one !=0){
-                nums[i++]=1;
+            }
+            else if(count_one!=0){
+                nums[i]=1;
                 count_one--;
             }
-            while(count_two!=0){
-                nums[i++]=2;
+            else{
+                nums[i]=2;
                 count_two--;
             }
         }
