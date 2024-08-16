@@ -1,20 +1,20 @@
 class Solution {
 public:
     int maxDistance(vector<vector<int>>& arrays) {
-        int minVal = arrays[0][0];      // Minimum value encountered so far
-        int maxVal = arrays[0].back();  // Maximum value encountered so far
-        int maxDistance = 0;
-
-        for (int i = 1; i < arrays.size(); ++i) {
-            // Calculate potential max distances using current array's first and last elements
-            maxDistance = max(maxDistance, abs(arrays[i].back() - minVal));
-            maxDistance = max(maxDistance, abs(maxVal - arrays[i][0]));
-
-            // Update minVal and maxVal for future comparisons
-            minVal = min(minVal, arrays[i][0]);
-            maxVal = max(maxVal, arrays[i].back());
+        int minval=arrays[0][0]; // min element encountered so far 
+        int maxval=arrays[0].back(); // max element encounted so far 
+        int d= 0;
+        /// this will be  paired with the other elements of the arrays 
+        for(int i=1; i<arrays.size(); ++i){
+            d=max(d, abs(minval-arrays[i].back()));
+            d=max(d, abs(maxval-arrays[i][0]));
+            
+            // update the min val and the max val so far 
+            minval=min(minval, arrays[i][0]);
+            maxval=max(maxval, arrays[i].back());
+            
         }
-
-        return maxDistance;
+       
+        return d;
     }
 };
