@@ -1,33 +1,22 @@
 class Solution {
 public:
     int numberOfArithmeticSlices(vector<int>& nums) {
-      // find out all the subarrary whose size si 3 o n3
-        int n=nums.size();
-        if(n==1 or n==2){
+        
+        int n = nums.size();
+        if(n<3){
             return 0;
         }
-        int cnt=0;
-        for(int i=0;i<n; i++){
-            for(int j=i; j<n; j++){
-                if(j-i+1>=3){
-                    // check if the element are continuos or not 
-                    bool flag=true;
-                    int d= nums[i+1]-nums[i];
-                    for(int k=i+1; k<=j ; k++){
-                            if(nums[k]-nums[k-1]==d){
-                                continue;
-                            }else{
-                                flag=false;
-                                break;
-                            }
-                     }
-                    if(flag){
-                        cnt++;
-                    }
-                }
-               
+        vector<int>dp(n,0);
+        for(int i=2; i<n; i++){
+            if(nums[i]-nums[i-1]==nums[i-1]-nums[i-2]){
+                // ap is formed
+                dp[i]=1+dp[i-1];
             }
         }
-        return cnt; 
+       int sum=0;
+        for(auto &ele : dp ){
+            sum+=ele;
+        }
+        return sum;
     }
 };
