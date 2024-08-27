@@ -7,38 +7,48 @@ using namespace std;
 class Solution {
   public:
     /*You are required to complete this method */
-    int findMaxDiff(vector<int> &arr) {
-        // Your code here
-        // nearest left smaller and nearst right smaller 
-        int ans =INT_MIN;
-        for(int i = 0; i<arr.size(); i++){
-            // fnd the left smaller than this 
-            // find the right smaller than this 
-            int currentelement= arr[i];
-            int j = i-1;
-            int leftsmaller=0;
-            while(j>=0 ){
-                if(currentelement>arr[j]){
-                    leftsmaller=arr[j];
-                    break;
-                }
-                j--;
-            }
-            
-            int k = i+1; 
-            int rightsmaller=0;
-            while(k<arr.size()){
-                if(arr[i]>arr[k]){
-                    rightsmaller=arr[k];
-                    break;
-                }
-                k++;
-            }
-            ans=max(ans, std::abs(leftsmaller-rightsmaller));
-            
+  vector<int> nextSmaller(vector<int>& nums) {
+    int n = nums.size();
+    vector<int> ans(n);
+    stack<int> st;
+
+    for (int i = 0; i < n; i++) {
+        while (!st.empty() && nums[st.top()] > nums[i]) {
+            ans[st.top()] = nums[i];
+            st.pop();
         }
-        return ans; 
+        st.push(i);
     }
+
+    // Any remaining elements in the stack have no next smaller element
+    while (!st.empty()) {
+        ans[st.top()] = 0; // or -1 based on requirement
+        st.pop();
+    }
+
+    return ans;
+}
+
+int findMaxDiff(vector<int>& arr) {
+    // Find the next smaller elements in the array
+    vector<int> nxtsmaller = nextSmaller(arr);
+
+    // Reverse the array to find the previous smaller elements
+    reverse(arr.begin(), arr.end());
+    vector<int> prevsmaller = nextSmaller(arr);
+
+    // Reverse back to match the original order
+    reverse(prevsmaller.begin(), prevsmaller.end());
+
+    // Calculate the maximum difference
+    int n = nxtsmaller.size();
+    int maxDiff = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        maxDiff = max(maxDiff, abs(nxtsmaller[i] - prevsmaller[i]));
+    }
+
+    return maxDiff;
+}
 };
 
 //{ Driver Code Starts.
