@@ -7,27 +7,28 @@ using namespace std;
 class Solution {
   public:
     /*You are required to complete this method */
-  vector<int> nextSmaller(vector<int>& nums) {
-    int n = nums.size();
-    vector<int> ans(n);
-    stack<int> st;
-
-    for (int i = 0; i < n; i++) {
-        while (!st.empty() && nums[st.top()] > nums[i]) {
+ vector<int>nextSmaller(vector<int>&nums){
+     int n  = nums.size();
+     vector<int>ans(n);
+     stack<int>st; 
+     // insetead of adding the element add the index
+     for(int i = 0; i< n ; i++){
+         
+      while (!st.empty() && nums[st.top()] > nums[i]) {
             ans[st.top()] = nums[i];
             st.pop();
         }
         st.push(i);
-    }
+             
 
-    // Any remaining elements in the stack have no next smaller element
-    while (!st.empty()) {
-        ans[st.top()] = 0; // or -1 based on requirement
-        st.pop();
-    }
-
-    return ans;
-}
+     }
+     while(!st.empty()){
+        ans[st.top()]=0; // -1 as per neeede; 
+         st.pop();
+         
+     }
+     return ans; 
+ }
 
 int findMaxDiff(vector<int>& arr) {
     // Find the next smaller elements in the array
