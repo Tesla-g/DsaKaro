@@ -30,12 +30,15 @@ std::vector<int> sortByFreq(std::vector<int>& arr) {
     // Generate the sorted result based on frequency
     std::vector<int> result;
     for (const auto& p : freqVec) {
-        result.insert(result.end(), p.first, p.second);
+        for(int i = 0; i<p.first; i++){
+            result.push_back(p.second);
+        }
     }
     
     return result;
 }
 };
+
 
 //{ Driver Code Starts.
 
