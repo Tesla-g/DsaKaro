@@ -11,29 +11,31 @@
  */
 class Solution {
 public:
-    int height(TreeNode * root){
-        
-        if(root==nullptr)return 0;
-        auto left=height(root->left);
-        auto right= height(root->right);
-        return 1+max(left, right);
-        
-    }
-    void solve(TreeNode * root, int &ans){
-        if(root==nullptr){
-            return ;
+  int heightAndDiameter(TreeNode* root, int& diameter) {
+        if (root == nullptr) {
+            return 0;
         }
-       auto diameter=height(root->left)+height(root->right);
-       ans=max(ans, diameter);
-        solve(root->left,ans);
-         solve(root->right,ans);
+
+        // Recursively find the height of the left and right subtrees
+        int leftHeight = heightAndDiameter(root->left, diameter);
+        int rightHeight = heightAndDiameter(root->right, diameter);
+
+        // Calculate the diameter passing through this node
+        int currentDiameter = leftHeight + rightHeight;
+
+        // Update the maximum diameter found so far
+        diameter = max(diameter, currentDiameter);
+
+        // Return the height of the current node
+        return 1 + max(leftHeight, rightHeight);
     }
+
     int diameterOfBinaryTree(TreeNode* root) {
         if(root==nullptr){
             return 0;
         }
         int ans=INT_MIN;
-        solve(root,ans);
+        heightAndDiameter(root,ans);
         return ans; 
     }
 };
